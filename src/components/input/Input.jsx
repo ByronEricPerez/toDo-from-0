@@ -1,4 +1,3 @@
-import { TodoList } from "../todoList/TodoList";
 import React from "react";
 import { useState } from "react";
 

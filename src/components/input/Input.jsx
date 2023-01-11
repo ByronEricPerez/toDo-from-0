@@ -18,7 +18,8 @@ const Input = () => {
 
     function keyup(e) {
         setName(e.target.value);
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
+            console.log(items);
             addElement();
         }
     }
@@ -27,7 +28,7 @@ const Input = () => {
     return (
         <h2>
             <input type="text"  placeholder="Que quieres anotar?"/>
-            <ul>
+            <ul className="flex flex-col mt-5 text-center">
                 <TodoList item={items}/>
                 {items.map((item, index) => (<li key={index}>{item.name}</li>))}
             </ul>

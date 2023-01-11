@@ -1,15 +1,11 @@
-import { Input } from "../input/Input";
 
-const TodoList = () => {
+const TodoList = ({items}) => {
     return (
-        <div>
-            <ul className="flex flex-col mt-5 text-center">
-                <li>asdasdasdasdasdasdasd</li>
-                <li>asdasdasdasdasdasdasd</li>
-                <li>asdasdasdasdasdasdasd</li>
-            </ul>
-        </div>
-    )
+        <ul className="flex flex-col mt-5 text-center">
+            {/* {items.map((item, index) => (
+            <li key={index}>{item.name}</li>))} */}
+        </ul>
+    );
 }
 
 export { TodoList };

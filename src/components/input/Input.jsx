@@ -5,29 +5,32 @@ import { useState } from "react";
 
 const Input = () => {
 
-    const [state, setState] = useState(initialState);
+    const [items, setItems] = useState([]);
+    const [name, setName] = useState('')
 
-    const change = () => {
-        setState(prevState => ({...prevState, todo:}));
+    const addElement = () => {
+        const newItem = {name: name};
+        setItems([...items, newItem]);
     };
 
+    window.onkeyup = keyup;
 
-    // window.onkeyup = keyup;
-    // let inputTextValue;
-    // let lista = [];
 
-    // function keyup(e) {
-    //     inputTextValue = e.target.value;
-    //     if (e.keyCode == 13) {
-    //         setState.push(inputTextValue);
-    //         console.log(setState);
-    //     }
-    // }
+    function keyup(e) {
+        setName(e.target.value);
+        if (e.keyCode == 13) {
+            addElement();
+        }
+    }
 
     
     return (
         <h2>
-            <input type="text" placeholder="Que quieres anotar?"/>
+            <input type="text"  placeholder="Que quieres anotar?"/>
+            <ul>
+                <TodoList item={items}/>
+                {items.map((item, index) => (<li key={index}>{item.name}</li>))}
+            </ul>
         </h2>
     )
 }

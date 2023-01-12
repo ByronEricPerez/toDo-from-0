@@ -4,12 +4,14 @@ import { useState } from "react";
 
 const Input = () => {
 
-    const [items, setItems] = useState([]);//guarda un array de los elemntos agregados en el input
+    const [items, setItems] = useState([]);//guarda un array de los elementos agregados en el input
     const [name, setName] = useState('')//guarda una cadena vacía que almacena el valor del input
 
     const addElement = () => {//agrega un nuevo objeto al estado items con el nombre del input del usuario.
-        const newItem = {name: name};
-        setItems([...items, newItem]);
+        if(name.trim() !== ""){//comprueba que el input no sea una cadena vacía
+            const newItem = {name: name};
+            setItems([...items, newItem]);
+        }
     };
 
     window.onkeyup = keyup;

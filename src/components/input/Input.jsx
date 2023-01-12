@@ -6,6 +6,7 @@ const Input = () => {
 
     const [items, setItems] = useState([]);//guarda un array de los elementos agregados en el input
     const [name, setName] = useState('')//guarda una cadena vacía que almacena el valor del input
+    const [isAdding, setIsAdding] = useState(false);//guarda un booleano con valor false
 
     const addElement = () => {//agrega un nuevo objeto al estado items con el nombre del input del usuario.
         if(name.trim() !== ""){//comprueba que el input no sea una cadena vacía
@@ -20,8 +21,13 @@ const Input = () => {
     function keyup(e) {//cuando se ejecuta esta función se actualiza el estado name con el valor del input
         setName(e.target.value);
         if (e.keyCode === 13) {
-            addElement();
-            e.target.value = '';
+            if(!isAdding){//comprueba si la variable "isAdding" es false
+                setIsAdding(true);//establece el valor de "isAdding" en true lo que indica que se está agregando un nuevo elemento
+                addElement();
+                e.target.value = '';
+            }   
+        }else{
+            setIsAdding(false);
         }
     }
     

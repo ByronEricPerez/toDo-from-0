@@ -21,12 +21,13 @@ const Input = () => {
         setName(e.target.value);
         if (e.keyCode === 13) {
             addElement();
+            e.target.value = '';
         }
     }
     
     return (
         <h2>
-            <input type="text" placeholder="Que quieres anotar?"/>
+                <input type="text" placeholder="Que quieres anotar?"/>
             <ul className="flex flex-col mt-5 text-center">
                 {/* <TodoList /> */}
                 {items.map((item, index) => (//itera sobre el estado items, que es un arreglo de objetos que contiene el nombre y el estado de tachado para cada elemento.

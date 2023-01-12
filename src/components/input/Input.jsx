@@ -26,8 +26,10 @@ const Input = () => {
     }
     
     return (
-        <h2>
+        <div>
+            <div>
                 <input type="text" placeholder="Que quieres anotar?"/>
+            </div>
             <ul className="flex flex-col mt-5 text-center">
                 {/* <TodoList /> */}
                 {items.map((item, index) => (//itera sobre el estado items, que es un arreglo de objetos que contiene el nombre y el estado de tachado para cada elemento.
@@ -45,7 +47,7 @@ const Input = () => {
                     </li>
                 ))}
             </ul>
-        </h2>
+        </div>
     )
 }
 

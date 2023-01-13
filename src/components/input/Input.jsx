@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Input = () => {
 
     const [items, setItems] = useState([]);//guarda un array de los elementos agregados en el input.
     const [name, setName] = useState('')//guarda una cadena vacía que almacena el valor del input.
     const [isAdding, setIsAdding] = useState(false);//guarda un booleano con valor false.
-    const [originalItemsTodo, setOriginalItemsTodo] = useState([])
+    //const [originalItemsTodo, setOriginalItemsTodo] = useState([])
 
-    useEffect(() => {
-        setOriginalItemsTodo([...items])
-        //repasar useEffect
-    }, []);
+    // useEffect(() => {
+    //     setOriginalItemsTodo([...items])
+    //repasar useEffect
+    // }, []);
 
     const addElement = () => {//agrega un nuevo objeto al estado items con el nombre del input del usuario.
         if(name.trim() !== ""){//comprueba que el input no sea una cadena vacía.
@@ -34,10 +34,10 @@ const Input = () => {
         }
     };
 
-    function returnOriginalTodo() {
-        setItems(originalItemsTodo)
-        //funcion encargada de mantener los items originales ingresados por input , urgente!
-    };
+    // function returnOriginalTodo() {
+    //     setItems(originalItemsTodo)
+    //funcion encargada de mantener los items originales ingresados por input , urgente!
+    // };
 
     function deleteCompleteTodo(){
         const deleteComplete = items.filter(item => !item.isUnderlined);//filtra solo los elementos del array donde el atributo isUnderlined es false.

@@ -56,7 +56,7 @@ const Input = () => {
     return (
         <div>
             <div>
-                <input type="text" placeholder="Que quieres anotar?"/>
+                <input type="text" className="appearance-none block w-full bg-orange-200 text-orange-600 border border-green-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Que quieres anotar?"/>
             </div>
             <ul className="flex flex-col mt-5 text-center">
                 {/* <TodoList /> */}
@@ -78,17 +78,17 @@ const Input = () => {
             <div className="flex space-x-4 text-center">
 
                     <button 
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" 
+                        className="bg-green-500 hover:bg-green-600 text-orange-300 font-bold py-2 px-4 border border-green-300 rounded" 
                         onClick={deleteItemComplete}
                     >Borrar Completados</button>
 
                     <button 
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+                        className="bg-green-500 hover:bg-green-600 text-orange-300 font-bold py-2 px-4 border border-green-300 rounded"
                         onClick={showIncomplete}
                     >Faltantes</button>
 
                     <button 
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+                        className="bg-green-500 hover:bg-green-600 text-orange-300 font-bold py-2 px-4 border border-green-300 rounded"
                         onClick={showComplete}
                     >Completados</button>
 

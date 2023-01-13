@@ -1,12 +1,16 @@
-import React from "react";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 
 const Input = () => {
 
     const [items, setItems] = useState([]);//guarda un array de los elementos agregados en el input.
     const [name, setName] = useState('')//guarda una cadena vacía que almacena el valor del input.
     const [isAdding, setIsAdding] = useState(false);//guarda un booleano con valor false.
+    const [originalItemsTodo, setOriginalItemsTodo] = useState([])
+
+    useEffect(() => {
+        setOriginalItemsTodo([...items])
+        //repasar useEffect
+    }, []);
 
     const addElement = () => {//agrega un nuevo objeto al estado items con el nombre del input del usuario.
         if(name.trim() !== ""){//comprueba que el input no sea una cadena vacía.
@@ -30,27 +34,34 @@ const Input = () => {
         }
     };
 
-    //solucionar!! se rompe al momento de llamar a esta funciona.
-    function deleteItemComplete(items){
-        console.log(items,'0') //corre funcion.
+    function returnOriginalTodo() {
+        setItems(originalItemsTodo)
+        //funcion encargada de mantener los items originales ingresados por input , urgente!
+    };
+
+    function deleteCompleteTodo(){
+        const deleteComplete = items.filter(item => !item.isUnderlined);//filtra solo los elementos del array donde el atributo isUnderlined es false.
+        setItems(deleteComplete);
+    }
+
+    function showIncompleteTodo(){
+        let incomplete = [];
         for (let i = 0; i < items.length; i++){
-            console.log(items,'1') //ya no corre.
-            if(items[i].isUnderlined){
-                items.splice(i,1);
-                //console.log(items,'2')
+            if(!items[i].isUnderlined){                
+                incomplete.push(items[i])
             }
         }
-        setItems(items)
+        setItems(incomplete)
     };
 
-    function showIncomplete(){
-        const itemsUnderlined = items.filter(item => !item.isUnderlined);//filtra solo los elementos del array donde el atributo isUnderlined es false.
-        setItems(itemsUnderlined);
-    };
-
-    function showComplete(){
-        const todoIncomplete = items.filter(item => item.isUnderlined);//filtra solo los elementos del array donde el atributo isUnderlined es true.
-        setItems(todoIncomplete);
+    function showCompleteTodo(){
+        let complete = [];
+        for (let i = 0; i < items.length; i++){
+            if(items[i].isUnderlined){                
+                complete.push(items[i])
+            }
+        }
+        setItems(complete)
     };
 
     return (
@@ -58,10 +69,10 @@ const Input = () => {
             <div>
                 <input type="text" className="appearance-none block w-full bg-orange-200 text-orange-600 border border-green-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Que quieres anotar?"/>
             </div>
-            <ul className="flex flex-col mt-5 text-center">
+            <ul className="flex flex-col mt-5 text-center bg-orange-200 border border-green-300 rounded mt-7 mb-9">
                 {/* <TodoList /> */}
                 {items.map((item, index) => (//itera sobre el estado items, que es un arreglo de objetos que contiene el nombre y el estado de tachado para cada elemento.
-                    <li //se crea un li para cada elemento del estado items.
+                    <li className="border border-green-300"//se crea un li para cada elemento del estado items.
                     onClick={() => {//
                         const newItems = [...items];//Se crea una copia del estado actual de los items.
                         newItems[index].isUnderlined = !newItems[index].isUnderlined;// se cambia el estado tachado del item actual.
@@ -79,17 +90,20 @@ const Input = () => {
 
                     <button 
                         className="bg-green-500 hover:bg-green-600 text-orange-300 font-bold py-2 px-4 border border-green-300 rounded" 
-                        onClick={deleteItemComplete}
+                        onClick={deleteCompleteTodo}
+                        //btn encargado de eliminar los objetos que cumplen la condicion (item.isUnderlined)
                     >Borrar Completados</button>
 
                     <button 
                         className="bg-green-500 hover:bg-green-600 text-orange-300 font-bold py-2 px-4 border border-green-300 rounded"
-                        onClick={showIncomplete}
+                        onClick={showIncompleteTodo}
+                        //btn encargado de mostrar los objetos que cumplen la condicion (!item.isUnderlined)
                     >Faltantes</button>
 
                     <button 
                         className="bg-green-500 hover:bg-green-600 text-orange-300 font-bold py-2 px-4 border border-green-300 rounded"
-                        onClick={showComplete}
+                        onClick={showCompleteTodo}
+                        //btn encargado de mostrar los objetos que cumplen la condicion (item.isUnderlined)
                     >Completados</button>
 
             </div>

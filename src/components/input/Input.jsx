@@ -8,7 +8,7 @@ const Input = () => {
     const [filtro, setfiltro] = useState('todos')
 
     const addElement = () => {//agrega un nuevo objeto al estado items con el nombre del input del usuario.
-        if(name.trim() !== ""){//comprueba que el input no sea una cadena vacía.
+        if(name.trim() !== "" || !/^\s/.test(name)){//comprueba que el input no sea una cadena vacía.
             const newItem = {name: name};
             setItems([...items, newItem]);
         }

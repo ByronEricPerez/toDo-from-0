@@ -5,12 +5,16 @@ const Input = () => {
     const [items, setItems] = useState([]);//guarda un array de los elementos agregados en el input.
     const [name, setName] = useState('')//guarda una cadena vacía que almacena el valor del input.
     const [isAdding, setIsAdding] = useState(false);//guarda un booleano con valor false.
-    const [filtro, setfiltro] = useState('todos')
+    const [filtro, setfiltro] = useState('todos');
+    const copiaListado = [...items];
 
     const addElement = () => {//agrega un nuevo objeto al estado items con el nombre del input del usuario.
         if(name.trim() !== "" || !/^\s/.test(name)){//comprueba que el input no sea una cadena vacía.
             const newItem = {name: name};
-            setItems([...items, newItem]);
+            if(!copiaListado.some((item) => item.name === newItem.name)){
+                copiaListado.push(newItem);
+                setItems([...items, newItem]);
+            }
         }
     };
 
@@ -45,13 +49,11 @@ const Input = () => {
         setfiltro('todos')
     }
 
-
     function obtenerTodoCompletados(){
         let todoCompletados = [];
         for(let i = 0; i < items.length; i ++){
             if(items[i].isUnderlined){
                 todoCompletados.push(items[i])
-
             }
         }
         return todoCompletados;
@@ -62,7 +64,6 @@ const Input = () => {
         for(let i = 0; i < items.length; i ++){
             if(!items[i].isUnderlined){
                 todoIncompletos.push(items[i])
-
             }
         }
         return todoIncompletos;
@@ -72,16 +73,10 @@ const Input = () => {
         for(let i = 0; i < items.length; i ++){
             if(items[i].isUnderlined){   
                 items.splice( i , 1 );
-
             }
-            
         }
         return items;
     }
-    // function deleteCompleteTodo(){
-    //     const deleteComplete = items.filter(item => !item.isUnderlined);//filtra solo los elementos del array donde el atributo isUnderlined es false.
-    //     setItems(deleteComplete);
-    // }
 
     let todoAMostrar = [];
     if(filtro === 'completados'){

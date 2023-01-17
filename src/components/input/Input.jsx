@@ -9,7 +9,7 @@ const Input = () => {
     const copiaListado = [...items];
 
     const addElement = () => {//agrega un nuevo objeto al estado items con el nombre del input del usuario.
-        if(!/^\s/.test(name)){//comprueba que el input no sea una cadena vacía.
+        if(name.split(' ').join('')){//comprueba que el input no sea una cadena vacía.
             const newItem = {name: name};
             if(!copiaListado.some((item) => item.name === newItem.name)){
                 copiaListado.push(newItem);

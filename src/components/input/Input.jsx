@@ -112,9 +112,13 @@ const Input = () => {
                         setItems(newItems);//y luego se actualiza el estado con la copia de los items actualizada para que el estado tachado del elemento se invierta.
                     }} 
                     style={{textDecoration: item.isUnderlined //establece en función del estado del item, si es true se tacha el texto si no se remueve el tachado.
-                        ? 'line-through'
-                        : 'none'}} //operador ternario.
-                    >
+                    ? 'line-through'
+                    : 'none',
+                background: item.isUnderlined
+                    ? '#E4C988'
+                    : 'none'
+                }} //operador ternario.
+                >
                     {item.name}
                     </li>
                 ))}

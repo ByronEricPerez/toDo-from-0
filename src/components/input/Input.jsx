@@ -70,12 +70,14 @@ const Input = () => {
     };
 
     function eliminarElementosCompletados(){
-        for(let i = 0; i < items.length; i ++){
-            if(items[i].isUnderlined){   
-                items.splice( i , 1 );
-            }
-        }
-        return items;
+        // for(let i = 0; i < items.length; i ++){
+        //     if(items[i].isUnderlined){   
+        //         items.splice( i , 1 );
+        //     }
+        // }
+        let newItems = items.filter(item => !item.isUnderlined)
+        setItems(newItems);
+        return newItems;
     };
 
     let todoAMostrar = [];

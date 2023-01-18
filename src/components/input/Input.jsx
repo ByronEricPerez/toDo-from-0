@@ -87,6 +87,9 @@ const Input = () => {
     }
     if(filtro ==='borrarCompletados'){
         todoAMostrar = eliminarElementosCompletados();
+        if(filtro ==='borrarCompletados'){
+            setfiltro('todos');
+        }
     }
     if(filtro === 'todos'){
         todoAMostrar = items;
@@ -98,7 +101,6 @@ const Input = () => {
                 <input type="text" className="appearance-none block w-full bg-orange-200 text-orange-600 border border-green-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Que quieres anotar?"/>
             </div>
             <ul className="flex flex-col mt-5 text-center bg-orange-200 border border-green-300 rounded mt-7 mb-9">
-                {/* <TodoList /> */}
                 {todoAMostrar.map((item, index) => (//itera sobre el estado items, que es un arreglo de objetos que contiene el nombre y el estado de tachado para cada elemento.
                     <li className="border border-green-300"//se crea un li para cada elemento del estado items.
                     onClick={() => {//

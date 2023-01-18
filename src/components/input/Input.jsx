@@ -8,9 +8,9 @@ const Input = () => {
     const [filtro, setfiltro] = useState('todos');
     const copiaListado = [...items];
 
-    const addElement = () => {//agrega un nuevo objeto al estado items con el nombre del input del usuario.
-        if(name.split(' ').join('')){//comprueba que el input no sea una cadena vacía.
-            const newItem = {name: name};
+    const addElement = () => {//agrega un nuevo objeto al estado items con el nombre del input del usuario.   
+        if(name.split(' ').join('') || !/^\s/.test(name)){//comprueba que el input no sea una cadena vacía.
+            let newItem = {name: name};
             if(!copiaListado.some((item) => item.name === newItem.name)){
                 copiaListado.push(newItem);
                 setItems([...items, newItem]);
@@ -41,7 +41,7 @@ const Input = () => {
         setfiltro('completados')
     }
 
-    function borrarComplet(){
+    function borrarCompletos(){
         setfiltro('borrarCompletados')
     }
 
@@ -76,7 +76,7 @@ const Input = () => {
             }
         }
         return items;
-    }
+    };
 
     let todoAMostrar = [];
     if(filtro === 'completados'){
@@ -133,7 +133,7 @@ const Input = () => {
 
                     <button 
                         className="bg-green-500 hover:bg-green-600 text-orange-300 font-bold py-2 px-4 border border-green-300 rounded" 
-                        onClick={borrarComplet}
+                        onClick={borrarCompletos}
                         //btn encargado de eliminar los objetos que cumplen la condicion (item.isUnderlined)
                     >Borrar Completados</button>
 
